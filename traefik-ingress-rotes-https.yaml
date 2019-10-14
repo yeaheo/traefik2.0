@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard-route-https
+  namespace: traefik
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: xx
+  routes:
+    - match: Host(`xx.xx.xx`)
+      kind: Rule
+      services:
+        - name: traefik
+          port: 8080
