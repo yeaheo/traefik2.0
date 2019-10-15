@@ -8,7 +8,6 @@ spec:
     - redis
   routes:
     - match: HostSNI(`*`)
-      kind: Rule
       services:
         - name: redis
           port: 6379
