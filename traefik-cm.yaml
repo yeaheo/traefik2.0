@@ -1,11 +1,12 @@
-## source configmap.yaml
-kind: ConfigMap
 apiVersion: v1
+kind: ConfigMap
 metadata:
   name: traefik-config
-  namespace: traefik
 data:
   traefik.yaml: |-
+    global:
+      checkNewVersion: true
+      sendAnonymousUsage: true
     serversTransport:
       insecureSkipVerify: true
     api:
@@ -14,7 +15,11 @@ data:
       debug: true
     metrics:
       prometheus: ""
+    ping:
+      entryPoint: "traefik"
     entryPoints:
+      traefik:
+        address: ":9000"
       web:
         address: ":80"
       websecure:
